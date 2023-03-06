@@ -1,12 +1,17 @@
 # Django course - Module 2
+
 This is my Django course. I hope you like it.
 
 > These notes follow on from steps/module_1.md
-***
-***
+
+---
+
+---
 
 ## Current root directory
+
 Your root directory should look like the following.
+
 ```
 django_course\  <--This is the root directory
     django_course\
@@ -28,27 +33,32 @@ django_course\  <--This is the root directory
     >README.md
     >requirements.txt
 ```
+
 If in doubt, run the following git commands:
+
 ```
 git checkout module_2
 git pull origin module_2
 ```
 
 ## Steps/Commands
->Note: Please 'cd' into the root directory and fire up your virtual environment!
+
+> Note: Please 'cd' into the root directory and fire up your virtual environment!
 
 "Django makes it easier to build better web apps more quickly and with less code."
 
-In this module, we will be creating a Django application for our project. A Django application is a Python package that is specifically intended for use in a Django project. An application may use common Django conventions, such as having models, tests, URL's, and views submodules. 
+In this module, we will be creating a Django application for our project. A Django application is a Python package that is specifically intended for use in a Django project. An application may use common Django conventions, such as having models, tests, URL's, and views submodules.
 
 Our application will be called 'core'. This application will hold the logic for our core/main web pages i.e. home, about us, contact us...
 
-1) Applications - Open a terminal and use the following command to start a new application
+1. Applications - Open a terminal and use the following command to start a new application
+
 ```
 python manage.py startapp core
 ```
 
 The settings.py file is where we save out project settings. Django will only know to include our core app in the project when we register it. Open django_course/settings.py and register the new application in INSTALLED_APPS. Replace the current settings with the following snippet.
+
 ```
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,8 +71,9 @@ INSTALLED_APPS = [
 ]
 ```
 
-2) Views - A view function, or view for short, is a Python function that takes a web request and returns a web response. This response can be the HTML contents of a web page, or a redirect, or a 404 error, or an XML document, or an image . . . or anything, really. Lets create our first view. Open django_course/core/views.py and write a view to handle the user request/response logic. Use the following snippet.
->Note: We will be using one of Django's built in views called ['TemplateView'](https://docs.djangoproject.com/en/4.1/topics/class-based-views/).
+2. Views - A view function, or view for short, is a Python function that takes a web request and returns a web response. This response can be the HTML contents of a web page, or a redirect, or a 404 error, or an XML document, or an image . . . or anything, really. Lets create our first view. Open django_course/core/views.py and write a view to handle the user request/response logic. Use the following snippet.
+   > Note: We will be using one of Django's built in views called ['TemplateView'](https://docs.djangoproject.com/en/4.1/topics/class-based-views/).
+
 ```
 from django.views import generic
 
@@ -77,9 +88,10 @@ class HomeView(generic.TemplateView):
 	template_name = "core/index.html"
 ```
 
-3) Templates - We will need a HTML template to render on a browser. Being a web framework, Django needs a convenient way to generate HTML dynamically. The most common approach relies on templates. A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted. Django is configured to find HTML files in registered app's. However, to help Django you will need to structure the template directory as follows:
+3. Templates - We will need a HTML template to render on a browser. Being a web framework, Django needs a convenient way to generate HTML dynamically. The most common approach relies on templates. A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted. Django is configured to find HTML files in registered app's. However, to help Django you will need to structure the template directory as follows:
+
 ```
-django_course\ 
+django_course\
     core\
         migrations\
             >__init__.py
@@ -109,9 +121,9 @@ Create HTMl template - Create an index.html file in core/templates/core and use 
 </html>
 ```
 
-4) URL's - A clean, elegant URL scheme is an important detail in a high-quality web application. Django lets you design URLs however you want, with no framework limitations. To design URLs for an app, you create a Python module informally called a URLconf (URL configuration). This module is pure Python code and is a mapping between URL path expressions to Python functions (your views). Go ahead and create a new urls.py file in /core to handle URL's for the core application. Use the following snipped of code in the new file.
+4. URL's - A clean, elegant URL scheme is an important detail in a high-quality web application. Django lets you design URLs however you want, with no framework limitations. To design URLs for an app, you create a Python module informally called a URLconf (URL configuration). This module is pure Python code and is a mapping between URL path expressions to Python functions (your views). Go ahead and create a new urls.py file in /core to handle URL's for the core application. Use the following snipped of code in the new file.
 
-```
+```py
 from django.urls import path
 from . import views
 
@@ -124,7 +136,7 @@ urlpatterns = [
 
 Now go ahead and open django_course/urls.py (URLconf)and wire up the core application URL's. Replace the code with the following snippet.
 
-```
+```py
 from django.contrib import admin
 from django.urls import path, include
 
@@ -134,11 +146,14 @@ urlpatterns = [
 ]
 ```
 
-8) Local server - Django has a built in development server which is a lightweight web server written purely in Python. Django's development server allows us to develop things rapidly, without having to deal with configuring a production server – such as Apache – until you’re ready for production. Use the following command to start a local development server
+8. Local server - Django has a built in development server which is a lightweight web server written purely in Python. Django's development server allows us to develop things rapidly, without having to deal with configuring a production server – such as Apache – until you’re ready for production. Use the following command to start a local development server
+
 ```
 python manage.py runserver
 ```
+
 You should see this log.
+
 ```
 Watching for file changes with StatReloader
 Performing system checks...
@@ -152,18 +167,23 @@ Django version 4.0.6, using settings 'django_course.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CTRL-BREAK.
 ```
->Note: Don't worry about the unapplied migration error message in your terminal. We'll deal with that soon enough.
+
+> Note: Don't worry about the unapplied migration error message in your terminal. We'll deal with that soon enough.
 
 You should now be up and running!
->Note: Open an incognito browser when testing your project (Ctrl + Shift + N)
 
-* Our django course project is accessible at [http://localhost:8000](http://localhost:8000)
+> Note: Open an incognito browser when testing your project (Ctrl + Shift + N)
 
-***
-***
+- Our django course project is accessible at [http://localhost:8000](http://localhost:8000)
+
+---
+
+---
 
 ## Root directory
->Note: If all went well, your root directory should now look like this
+
+> Note: If all went well, your root directory should now look like this
+
 ```
 django_course\  <--This is the root directory
     core\
@@ -200,5 +220,6 @@ django_course\  <--This is the root directory
     >requirements.txt
 ```
 
-***
-***
+---
+
+---
