@@ -1,12 +1,17 @@
 # Django course - Module 3
+
 This is my Django course. I hope you like it.
 
 > These notes follow on from steps/module_2.md
-***
-***
+
+---
+
+---
 
 ## Current root directory
+
 Your root directory should look like the following.
+
 ```
 django_course\  <--This is the root directory
     core\
@@ -42,24 +47,29 @@ django_course\  <--This is the root directory
     >README.md
     >requirements.txt
 ```
+
 If in doubt, run the following git commands:
+
 ```
 git checkout module_3
 git pull origin module_3
 ```
 
 ## Steps/Commands
->Note: Please 'cd' into the root directory and fire up your virtual environment!
+
+> Note: Please 'cd' into the root directory and fire up your virtual environment!
 
 In the last module, we constructed our very first web page. In this module, we will be installing a fantastic Django package that will help us understand how our our webpage is rendered and what goes on under the hood. This package is called [Django Debug Toolbar](https://pypi.org/project/django-debug-toolbar/).
 
-1) Install - Open a terminal and use the following command to install a Django Debug Toolbar.
+1. Install - Open a terminal and use the following command to install a Django Debug Toolbar.
+
 ```
 pip install django-debug-toolbar
 pip freeze > requirements.txt
 ```
 
-2) Settings - You will need to register the new package and adjust some settings in django_course/settings.py. Copy and paste the following code at the bottom of your settings file.
+2. Settings - You will need to register the new package and adjust some settings in django_course/settings.py. Copy and paste the following code at the bottom of your settings file.
+
 ```
 if DEBUG:
     INSTALLED_APPS += 'debug_toolbar', #this is to assist with debugging
@@ -85,6 +95,7 @@ if DEBUG:
 ```
 
 Now replace "STATIC_URL = 'static/'" with the following snippet.
+
 ```
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -99,13 +110,14 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 ```
 
 Also, add the following import at the top of settings.py
+
 ```
 import os
 ```
 
-3) URL's - Django debug toolbar needs to be added to the django_course/urls.py file.
+3. URL's - Django debug toolbar needs to be added to the django_course/urls.py file.
 
-```
+```py
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -122,24 +134,26 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
-4) Static and Media - We now need to add a new directory to our project to handle static files. We will talk more about these later in the course. Add a static directory to your root directory to look like this.
->Note: You already have a media directory with some default images.
+4. Static and Media - We now need to add a new directory to our project to handle static files. We will talk more about these later in the course. Add a static directory to your root directory to look like this.
+   > Note: You already have a media directory with some default images.
 
 ```
-django_course\  
+django_course\
     ...
     static\ <--New directory
     ...
 ```
 
-6) Migrations - Migrations are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. They’re designed to be mostly automatic, but you’ll need to know when to make migrations and when to run them. A new instance will always have a whole bunch of migrations waiting to be migrated. You can do this by running the following command.
+6. Migrations - Migrations are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. They’re designed to be mostly automatic, but you’ll need to know when to make migrations and when to run them. A new instance will always have a whole bunch of migrations waiting to be migrated. You can do this by running the following command.
 
 > Note: We are using the default db.sqlite3 database.
+
 ```
 python manage.py migrate
 ```
 
 You should see this log.
+
 ```
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, sessions
@@ -164,28 +178,34 @@ Running migrations:
   Applying sessions.0001_initial... OK
 ```
 
-7) Static - We can use a command called 'collectstatic' to consolidate our projects static files into a new directory. We have called this 'staticfiles' (see step 2). run the following command to collect static files.
+7. Static - We can use a command called 'collectstatic' to consolidate our projects static files into a new directory. We have called this 'staticfiles' (see step 2). run the following command to collect static files.
 
 ```
 python manage.py collectstatic
 ```
 
 You should see this log.
+
 ```
 140 static files copied to 'C:\Users\Bobby\Development\django_course\staticfiles'.
 ```
 
 You should now have Django debug toolbar available in your browser!
->Note: Open an incognito browser when testing your project (Ctrl + Shift + N)
 
-* Our django course project is accessible at [http://localhost:8000](http://localhost:8000)
+> Note: Open an incognito browser when testing your project (Ctrl + Shift + N)
+
+- Our django course project is accessible at [http://localhost:8000](http://localhost:8000)
 
 You should see a new debug tool bar on the right of the browser! Spend some time going through each tab.
-***
-***
+
+---
+
+---
 
 ## Root directory
->Note: If all went well, your root directory should now look like this
+
+> Note: If all went well, your root directory should now look like this
+
 ```
 django_course\  <--This is the root directory
     core\
@@ -220,5 +240,6 @@ django_course\  <--This is the root directory
     >requirements.txt
 ```
 
-***
-***
+---
+
+---
