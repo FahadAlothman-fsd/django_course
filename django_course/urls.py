@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("core.urls", namespace="core")),  # our bespoke apps
+    path("", include("users.urls", namespace="users")),  # this is our new URL config
     path("__debug__/", include("debug_toolbar.urls")),
 ]
 
